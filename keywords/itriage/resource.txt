@@ -1,0 +1,21 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Selenium2Library
+Library        ../lib/utils.py
+
+# resource importation/extension
+Resource       ../common_resources.txt
+
+*** Variables ***
+${SERVER}         ferronrsmith.github.io/robot_framework/
+${BROWSER}        Firefox
+${DELAY}          0
+${VALID USER}     demo
+${VALID PASSWORD}    mode
+
+
+*** Keywords ***
