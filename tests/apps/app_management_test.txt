@@ -1,11 +1,13 @@
 *** Settings ***
-Documentation     A test suite with a single Gherkin style test.
+Documentation     Test Suite for the App Management Page.
 ...
 ...               This test is functionally identical to the example in
 ...               valid_login.txt file.
 Resource       ../../keywords/apps/resource.txt
+Suite Setup		Valid Login
 Suite Teardown     Close Browser
 
 *** Test Cases ***
-Valid Login
-	Open Browser To Login Page
+App Manager Should Contain All Apps
+    Go To App Management Page
+    Check The Amount of Apps on App Manager	24
