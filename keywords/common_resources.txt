@@ -10,7 +10,7 @@ Library        lib/utils.py
 *** Variables ***
 
 #${SERVER}         carepass.com/carepass
-${SERVER}        qa2www.carepass.com/carepass
+${SERVER}        qa2www.carepass.com/carepass5
 ${BROWSER}        firefox
 ${PHANTOMJS_REMOTE_URL}    http://localhost:4444
 ${BROWSER_ALIAS}    main browser
@@ -33,6 +33,7 @@ ${APP URL}        https://${SERVER}/apps
 # e.g connecting jawbone :- /connect/provider?appToken=jawbone
 ${APP CONNECT URL}        https://${SERVER}/connect/provider?appToken=
 ${FITSYNC CONNECT URL}        https://app.fitsync.com/carepass
+${APP STORE URL}    https://${SERVER}/appstore/   #https://qa2www.carepass.com/appstore/22/download
 
 
 # USER PROFILE PAGE
@@ -73,7 +74,7 @@ Configure For PROD Testing
     Open Browser    ${LOGIN URL}    ${BROWSER}
 
 Is QA Environment
-    ${mode}=    Set Variable If  '${SERVER}' == 'qa2www.carepass.com/carepass'   TRUE     ELSE     FALSE
+    ${mode}=    Set Variable If  '${SERVER}' == 'qa2www.carepass.com/carepass5'   TRUE     ELSE     FALSE
     Return From Keyword    ${mode}
 
 Open Browser To Login Page

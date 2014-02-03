@@ -4,6 +4,9 @@ Documentation     A resource file with reusable keywords and variables.
 # resource importation/extension
 Resource       ../common_resources.txt
 
+*** Variables ***
+@{CATEGORIES}=	['View All Apps', 'Body Measurement', Dr. Visit', 'Fitness', 'Lifestyle', 'Medication, 'Mood', 'Nutrition', 'Sleep, 'Weight']
+
 *** Keywords ***
 Valid Login
     Open Browser To Login Page
@@ -16,4 +19,4 @@ Check The Amount of Apps on App Manager
 
 Go To App Management Page
     Go To    ${APP URL}
-    Wait Until Page Contains Element
+    Wait Until Page Contains Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']	10s

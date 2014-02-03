@@ -21,3 +21,16 @@ App Manager Should Contain All Apps
 App Manager Should Contain Drop Down
 	[Tags]	qa_only
 	Page Should Contain Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']
+
+App Manager Drop Should Contain All Categories
+	[Tags]	qa_only
+	# ${items}=  Get Selected List Labels  css=select:first-child
+	${items}=  Get Inner Html 	//select[@data-ng-model='categoryKey']
+	Log
+	...  ${items}
+	...  level=WARN
+
+	# Should Be Equal 	${items}		@{CATEGORIES}
+
+	# Should Be Equal 	${items}		@{CATEGORIES}
+
