@@ -8,19 +8,25 @@ Library           Selenium2Library
 Library        lib/utils.py
 
 *** Variables ***
-${SERVER}         carepass.com/carepass
+
+#${SERVER}         carepass.com/carepass
+${SERVER}        qa2www.carepass.com/carepass
 ${BROWSER}        firefox
 ${PHANTOMJS_REMOTE_URL}    http://localhost:4444
 ${BROWSER_ALIAS}    main browser
 ${DELAY}          0
-${VALID USER}     demo
-${VALID PASSWORD}    mode
+
+${DEFAULT USER NAME}    ferron.smith
+${DEFAULT USER PASSWORD}    Wizard12
+
+${FF_PROFILE}   profiles
 
 # AUTH PAGES
 ${LOGIN URL}      https://${SERVER}/login
 ${LOG OUT}        https://${SERVER}/logout
 ${REGISTRATION URL}        https://${SERVER}/register
-${WELCOME URL}    https://www.${SERVER}/
+${PROD WELCOME URL}    https://www.${SERVER}/
+${QA WELCOME URL}    https://${SERVER}/
 
 # APP MANAGEMENT PAGE
 ${APP URL}        https://${SERVER}/apps
@@ -56,13 +62,24 @@ ${LIFESTYLE PROFILE}      https://${SERVER}/lifestyle
 ${ITRIAGE URL}      https://${SERVER}/apps/itriage
 ${HELP URL}      https://${SERVER}/static-page/help
 
-${DEFAULT USER NAME}    ferron.hanse
-${DEFAULT USER PASSWORD}    Wizard12
-
 *** Keywords ***
+
+Configure For QA Testing
+    Set Suite Variable  ${DEFAULT USER NAME}    ferron.smith
+    Open Browser     ${LOGIN URL}    ${BROWSER}      ff_profile_dir=${FF_PROFILE}
+
+Configure For PROD Testing
+    Set Suite Variable  ${DEFAULT USER NAME}    ferron.hanse
+    Open Browser    ${LOGIN URL}    ${BROWSER}
+
+Is QA Environment
+    ${mode}=    Set Variable If  '${SERVER}' == 'qa2www.carepass.com/carepass'   TRUE     ELSE     FALSE
+    Return From Keyword    ${mode}
+
 Open Browser To Login Page
     [Documentation]    Open Browser ${LOGIN URL} ${BROWSER} ${BROWSER_ALIAS} ${PHANTOMJS_REMOTE_URL}
-    Open Browser    ${LOGIN URL}    ${BROWSER}
+    ${mode}=    Is QA Environment
+    Run Keyword If  '${mode}' == 'TRUE'   Configure For QA Testing     ELSE     Configure For PROD Testing
     Maximize Browser Window
     Set Selenium Speed    ${DELAY}
     Login Page Should Be Open
@@ -95,7 +112,8 @@ Login To App
     Submit Credentials
 
 Welcome Page Should Be Open
-    Location Should Be    ${WELCOME URL}
+    ${mode}=    Is QA Environment
+    Run Keyword If  '${mode}' == 'TRUE'   Location Should Be     ${QA WELCOME URL}     ELSE     Location Should Be     ${PROD WELCOME URL}
     Title Should Be    CarePass
 
 Teardown Take Failure Snapshot

@@ -1,10 +1,5 @@
 *** Settings ***
 Documentation     A resource file with reusable keywords and variables.
-...
-...               The system specific keywords created here form our own
-...               domain specific language. They utilize keywords provided
-...               by the imported Selenium2Library.
-Library           Selenium2Library
 
 # resource importation/extension
 Resource       ../common_resources.txt
@@ -17,8 +12,8 @@ Valid Login
 
 Check The Amount of Apps on App Manager
 	[Arguments] 	${app_count}
-    Page Should Contain Element    jquery=div.app
     Xpath Should Match X Times    //div[@class='title ng-binding']    ${app_count}
 
 Go To App Management Page
     Go To    ${APP URL}
+    Wait Until Page Contains Element

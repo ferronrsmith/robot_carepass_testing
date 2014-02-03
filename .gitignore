@@ -12,3 +12,4 @@ report.html
 output.xml
 *.log
 selenium-screenshot-*.png
+*.zip

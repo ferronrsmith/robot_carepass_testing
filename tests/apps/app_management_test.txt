@@ -9,5 +9,15 @@ Suite Teardown     Close Browser
 
 *** Test Cases ***
 App Manager Should Contain All Apps
+	[Tags]	prod_only
     Go To App Management Page
     Check The Amount of Apps on App Manager	24
+
+App Manager Should Contain All Apps
+	[Tags]	qa_only
+    Go To App Management Page
+    Check The Amount of Apps on App Manager	26
+
+App Manager Should Contain Drop Down
+	[Tags]	qa_only
+	Page Should Contain Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']
