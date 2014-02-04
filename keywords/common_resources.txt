@@ -5,11 +5,12 @@ Documentation     A resource file with reusable keywords and variables.
 ...               domain specific language. They utilize keywords provided
 ...               by the imported Selenium2Library.
 Library           Selenium2Library
+Library           Collections
 Library        lib/utils.py
 
 *** Variables ***
 
-#${SERVER}         carepass.com/carepass
+# ${SERVER}         carepass.com/carepass
 ${SERVER}        qa2www.carepass.com/carepass5
 ${BROWSER}        firefox
 ${PHANTOMJS_REMOTE_URL}    http://localhost:4444
