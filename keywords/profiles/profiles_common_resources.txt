@@ -10,9 +10,5 @@ Library           Selenium2Library
 Resource       ../common_resources.txt
 
 *** Variables ***
-${BROWSER}        Firefox
-${DELAY}          0
-${VALID USER}     demo
-${VALID PASSWORD}    mode
 
 *** Keywords ***

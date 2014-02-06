@@ -1,0 +1,91 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+...
+...               The system specific keywords created here form our own
+...               domain specific language. They utilize keywords provided
+...               by the imported Selenium2Library.
+Library           Selenium2Library
+
+# resource importation/extension
+Resource       ../common_resources.txt
+
+*** Variables ***
+
+${MOBILE SERVER}        ${SERVER}/mobile
+
+# AUTH PAGES
+${MOBILE LOGIN URL}      https://${MOBILE SERVER}/login
+${MOBILE LOG OUT}        https://${MOBILE SERVER}/
+${MOBILE REGISTRATION URL}        https://${MOBILE SERVER}/register
+${MOBILE PROD WELCOME URL}    https://www.${MOBILE SERVER}/home
+${MOBILE QA WELCOME URL}    https://${MOBILE SERVER}/home
+
+# APP MANAGEMENT PAGE
+${MOBILE APP URL}        https://${MOBILE SERVER}/apps
+${MOBILE APP DETAIL}        https://${MOBILE SERVER}/app_detail/		# https://qa2www.carepass.com/carepass/mobile/app_detail/fatsecret
+
+
+# USER PROFILE PAGE
+${MOBILE BIOGRAPHY URL}        https://${MOBILE SERVER}/myprofile
+
+# GOAL URL
+${MOBILE GET STARTED GOAL URL}        https://${MOBILE SERVER}/goals            # Goal selection page
+${MOBILE GOAL WIZARD URL}          https://${MOBILE SERVER}/intro/     			# Goal Wizard
+
+# Virtual Run or Walk 		1
+# Fav Jeans 				2
+# Kickstart Weight Loss 	4
+# Custom goal 				9
+
+# PROFILES
+${MOBILE FITNESS PROFILE}      https://${MOBILE SERVER}/fitness
+${MOBILE NUTRITION PROFILE}      https://${MOBILE SERVER}/nutrition
+${MOBILE DR VISITS PROFILE}      https://${MOBILE SERVER}/appointments
+${MOBILE INSURANCE PROFILE}      https://${MOBILE SERVER}/insurance
+${MOBILE MOOD PROFILE}      https://${MOBILE SERVER}/moods
+${MOBILE SLEEP PROFILE}      https://${MOBILE SERVER}/sleep
+${MOBILE MEDICATIONS PROFILE}      https://${MOBILE SERVER}/medications
+${MOBILE BODY MEASUREMENT PROFILE}      https://${MOBILE SERVER}/bodymeasurements
+${MOBILE LAB RESULTS PROFILE}      https://${MOBILE SERVER}/labresults
+${MOBILE CONDITIONS PROFILE}      https://${MOBILE SERVER}/conditions
+${MOBILE LIFESTYLE PROFILE}      https://${MOBILE SERVER}/lifestyle
+
+# STATIC PAGES
+${MOBILE ITRIAGE URL}      https://${MOBILE SERVER}/care
+${MOBILE HELP URL}      https://${MOBILE SERVER}/help
+
+*** Keywords ***
+
+Configure For Mobile QA Testing
+    Set Suite Variable  ${DEFAULT USER NAME}    ferron.smith
+    Open Browser     ${MOBILE LOGIN URL}    ${BROWSER}      ff_profile_dir=${FF_PROFILE}
+
+Configure For Mobile PROD Testing
+    Set Suite Variable  ${DEFAULT USER NAME}    ferron.hanse
+    Open Browser    ${MOBILE LOGIN URL}    ${BROWSER}
+
+Open Browser To Mobile Login Page
+    [Documentation]    Open Browser ${LOGIN URL} ${BROWSER} ${BROWSER_ALIAS} ${PHANTOMJS_REMOTE_URL}
+    ${mode}=    Is QA Environment
+    Run Keyword If  '${mode}' == 'TRUE'   Mobile Configure For QA Testing     ELSE     Mobile Configure For PROD Testing
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Login Page Should Be Open
+
+Go To Mobile Login Page
+    Go To    ${LOGIN URL}
+    Login Page Should Be Open
+
+Mobile Submit Credentials
+    Click Link    login-button
+
+Login To Mobile App
+    [Arguments]    ${username}    ${password}
+    Input Username    ${username}
+    Input Password    ${password}
+    Submit Credentials
+
+Welcome Page Should Be Open
+    ${mode}=    Is QA Environment
+    Run Keyword If  '${mode}' == 'TRUE'   Location Should Be     ${QA WELCOME URL}     ELSE     Location Should Be     ${PROD WELCOME URL}
+    Title Should Be    CarePass

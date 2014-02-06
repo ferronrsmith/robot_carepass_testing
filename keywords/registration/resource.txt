@@ -10,11 +10,5 @@ Library           Selenium2Library
 Resource       ../common_resources.txt
 
 *** Variables ***
-${SERVER}         ferronrsmith.github.io/robot_framework/
-${BROWSER}        Firefox
-${DELAY}          0
-${VALID USER}     demo
-${VALID PASSWORD}    mode
-
 
 *** Keywords ***

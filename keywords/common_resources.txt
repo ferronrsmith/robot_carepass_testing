@@ -11,7 +11,9 @@ Library        lib/utils.py
 *** Variables ***
 
 # ${SERVER}         carepass.com/carepass
-${SERVER}        qa2www.carepass.com/carepass5
+${ENVIRONMENT}      qa2www.carepass.com
+${CONTEXT}          carepass5
+${SERVER}        ${ENVIRONMENT}/${CONTEXT}
 ${BROWSER}        firefox
 ${PHANTOMJS_REMOTE_URL}    http://localhost:4444
 ${BROWSER_ALIAS}    main browser
@@ -47,6 +49,11 @@ ${GOAL WIZARD URL}          ${GET STARTED GOAL URL}?goalTemplateId=     # Goal W
 ${GOAL HISTORY URL}        https://${SERVER}/goals/history              # Goal history page
 ${GOAL TRACKER URL}         https://${SERVER}/goals/?goal=              # Goal tracking page
 
+# Virtual Run or Walk       1
+# Fav Jeans                 2
+# Kickstart Weight Loss     4
+# Custom goal               9
+
 # PROFILES
 ${FITNESS PROFILE}      https://${SERVER}/fitness/activity
 ${NUTRITION PROFILE}      https://${SERVER}/nutrition
@@ -75,7 +82,7 @@ Configure For PROD Testing
     Open Browser    ${LOGIN URL}    ${BROWSER}
 
 Is QA Environment
-    ${mode}=    Set Variable If  '${SERVER}' == 'qa2www.carepass.com/carepass5'   TRUE     ELSE     FALSE
+    ${mode}=    Set Variable If  '${ENVIRONMENT}' == 'qa2www.carepass.com'   TRUE     ELSE     FALSE
     Return From Keyword    ${mode}
 
 Open Browser To Login Page
@@ -102,7 +109,8 @@ Input Password
     Input Text    PASSWORD    ${password}
 
 Logout
-    Go To    ${LOG OUT}
+    ${mode}=    Is QA Environment
+    Run Keyword If  '${mode}' == 'TRUE'   Go To    https://${ENVIRONMENT}/carepass/logout     ELSE     Go To    ${LOG OUT}
 
 Submit Credentials
     Click Link    login-button
