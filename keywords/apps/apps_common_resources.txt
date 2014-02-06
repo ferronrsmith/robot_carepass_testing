@@ -6,10 +6,7 @@ Resource       ../common_resources.txt
 
 *** Variables ***
 @{CATEGORIES}=	View All Apps	Body Measurement	Dr. Visit	Fitness 	Lifestyle 	Medication 		Mood	Nutrition	Sleep 	Weight
-@{APPS}=	active	bettrlife	bodymedia	care4today	fatsecret	fitbit	fitbug	fitsync	fooducate	garmin	healthspark	itriage	loseit	mapmyfitness	meq	moves	moxiefit	mybreath	passage	runkeeper	sparkpeople	thryve	jawbone	wellzone	withings	zipongo
-
-# ${APP_COUNT}	Create Dictionary 	{'View All Apps' : 26, 'Body Measurement' : 11, 'Dr. Visit' : 1, Fitness' : 15, 'Lifestyle' : 1, 'Medication' : 1, 'Mood' : 1, 'Nutrition' : 12, 'Sleep' : 3, 'Weight' : 11}
-
+@{APPS}=	active	bettrlife	bodymedia	care4today	fatsecret	fitbit	fitbug	fitsync	fooducate	garmin	healthspark	itriage	loseit	mapmyfitness	meq		moves	moxiefit	mybreath	passage	runkeeper	sparkpeople	thryve	jawbone	wellzone	withings	zipongo
 
 *** Keywords ***
 Valid Login

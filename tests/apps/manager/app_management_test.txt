@@ -35,13 +35,16 @@ App Manager Drop Should Contain All Categories
    	\ 	${select}=	Get Currently Selected Category
    	\	Should Be Equal 	${Element}	${select}
 
-# App Manager Category Contains the Correct Count of Apps
-#     [Tags]	qa_only
-#     [Documentation]     Verifies that all categories exists within the drop down
-#     : FOR   ${Element}  IN  @{CATEGORIES}
-#     \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
-#    	\	Execute Javascript 	window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
-#    	\ 	${select}=	Get Currently Selected Category
-#    	\	Should Be Equal 	${Element}	${select}
-#    	\	${app_count}=	Get From Dictionary 	${APP_COUNT}	${Element}
-# 	\	Xpath Should Match X Times    //div[@class='title ng-binding']    ${app_count}
+App Manager Category Contains the Correct Count of Apps
+    [Tags]	qa_only
+    [Documentation]     Verifies that all categories exists within the drop down
+    ${APP_COUNT}    Create Dictionary    View All Apps    26    Body Measurement    11    Dr. Visit    1    Fitness    14    Lifestyle    1    Medication    1    Mood    1    Nutrition    12    Sleep    3    Weight    11
+
+    Go To App Management Page
+    : FOR   ${Element}  IN  @{CATEGORIES}
+    \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
+   	\	Execute Javascript 	window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
+   	\ 	${select}=	Get Currently Selected Category
+    \   ${app_value}  Get From Dictionary   ${APP_COUNT}  ${Element}
+   	\   Should Be Equal 	${Element}	${select}
+    \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
