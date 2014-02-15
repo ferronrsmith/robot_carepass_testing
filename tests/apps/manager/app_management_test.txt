@@ -48,3 +48,8 @@ App Manager Category Contains the Correct Count of Apps
     \   ${app_value}  Get From Dictionary   ${APP_COUNT}  ${Element}
    	\   Should Be Equal 	${Element}	${select}
     \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
+
+Connecting an App on the App Manager Page - Fitbit
+    [Tags]  beta
+    Connect App   fitbit
+    Wait Until Keyword Succeeds    50s    5s    Welcome Page Should Be Open
