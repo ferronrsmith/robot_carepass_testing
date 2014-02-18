@@ -6,13 +6,13 @@ Documentation     A resource file with reusable keywords and variables.
 ...               by the imported Selenium2Library.
 Library           Selenium2Library
 Library           Collections
-Library        lib/utils.py
+# Library        lib/utils.py
 
 *** Variables ***
 
 # ${SERVER}         carepass.com/carepass
 ${ENVIRONMENT}      qa2www.carepass.com
-${CONTEXT}          carepass5
+${CONTEXT}          carepass
 ${SERVER}        ${ENVIRONMENT}/${CONTEXT}
 ${BROWSER}        firefox
 ${PHANTOMJS_REMOTE_URL}    http://localhost:4444
@@ -76,6 +76,7 @@ ${HELP URL}      https://${SERVER}/static-page/help
 Configure For QA Testing
     Set Suite Variable  ${DEFAULT USER NAME}    ferron.smith
     Open Browser     ${LOGIN URL}    ${BROWSER}      ff_profile_dir=${FF_PROFILE}
+    # Open Browser     ${LOGIN URL}    ${BROWSER}
 
 Configure For PROD Testing
     Set Suite Variable  ${DEFAULT USER NAME}    ferron.hanse

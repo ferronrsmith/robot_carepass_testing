@@ -17,7 +17,7 @@ Valid Login
 Go To App Management Page
 	[Documentation]		Navigate to the app management page
     Go To    ${APP URL}
-    Wait Until Page Contains Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']	10s
+    Wait Until Page Contains Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']	20s
 
 Connect App
 	[Arguments]		${app_name}

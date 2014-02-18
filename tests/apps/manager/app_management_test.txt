@@ -36,9 +36,9 @@ App Manager Drop Should Contain All Categories
    	\	Should Be Equal 	${Element}	${select}
 
 App Manager Category Contains the Correct Count of Apps
-    [Tags]	qa_only
+    [Tags]	beta
     [Documentation]     Verifies that all categories exists within the drop down
-    ${APP_COUNT}    Create Dictionary    View All Apps    26    Body Measurement    11    Dr. Visit    1    Fitness    14    Lifestyle    1    Medication    1    Mood    1    Nutrition    12    Sleep    3    Weight    11
+    ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurement    11    Dr. Visit    1    Fitness    14    Lifestyle    1    Medication    1    Mood    1    Nutrition    12    Sleep    3    Weight    10
 
     Go To App Management Page
     : FOR   ${Element}  IN  @{CATEGORIES}
@@ -49,7 +49,7 @@ App Manager Category Contains the Correct Count of Apps
    	\   Should Be Equal 	${Element}	${select}
     \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
 
-Connecting an App on the App Manager Page - Fitbit
-    [Tags]  beta
-    Connect App   fitbit
-    Wait Until Keyword Succeeds    50s    5s    Welcome Page Should Be Open
+# Connecting an App on the App Manager Page - Fitbit
+    # [Tags]  beta
+    # Connect App   fitbit
+    # Wait Until Keyword Succeeds    50s    5s    Welcome Page Should Be Open

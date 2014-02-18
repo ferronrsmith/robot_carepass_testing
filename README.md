@@ -1,4 +1,2 @@
-robot_carepass_testing
-======================
-
-Testing Suite For CarePass
+#### Robot Framework - Automated Testing
+Starting of will be the defacto E2E testing suite for CarePass. The aim of this project is to add testing for all front-end aspects of the CarePass application that would help to mitigate defects and regressions.
