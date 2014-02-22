@@ -38,7 +38,7 @@ App Manager Drop Should Contain All Categories
 App Manager Category Contains the Correct Count of Apps
     [Tags]	beta
     [Documentation]     Verifies that all categories exists within the drop down
-    ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurement    11    Dr. Visit    1    Fitness    14    Lifestyle    1    Medication    1    Mood    1    Nutrition    12    Sleep    3    Weight    10
+    ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurements    11    Dr. Visits    1    Fitness    14    Lifestyle    1    Medications    1    Mood    1    Nutrition    12    Sleep    3    Weight    10
 
     Go To App Management Page
     : FOR   ${Element}  IN  @{CATEGORIES}

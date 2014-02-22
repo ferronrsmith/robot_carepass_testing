@@ -12,5 +12,5 @@ Check The Amount of Apps on App Manager
 
 Get Currently Selected Category
 	[Documentation]		Retrieves the currently selected value from the drop-down
-	${result}=	Get Text 	xpath=//*[@id="stage"]/div[1]/h1[2]/div/div/button/span[1]
+	${result}=	Get Text 	xpath=//*[@id="stage"]/h1/div/div/button/span[1]
 	[return]	${result}
