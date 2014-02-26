@@ -1,0 +1,31 @@
+Capture Screenshot
+Connect To Testserver
+Install Application
+Press Menu Button
+Screen Should Contain
+Screen Should Not Contain
+Scroll Down
+Scroll Up
+Send Key
+Set Basic Auth
+Set Device Endpoint
+Set Device Url
+Set Text
+Set Webview Text
+Start Emulator
+Start Testserver
+Start Testserver With Apk
+Stop Emulator
+Stop Testserver
+Swipe Left
+Swipe Right
+Touch Button
+Touch Image Button
+Touch Position
+Touch Text
+Touch View
+Touch Webview Element
+Uninstall Application
+Wait For Device
+Webview Scroll To
+Webview Should Contain

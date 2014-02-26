@@ -26,6 +26,7 @@ if environment.find('qa'):
 elif re.match(r'qa[2-9]', environment):
     ENVIRONMENT = DEFAULT_ENV.format(environment)
     if environment == 'qa2':
+        # If the environment is qa2 do not change the context
         CONTEXT = DEFAULT_CONTEXT.format('')
     else:
         CONTEXT = DEFAULT_CONTEXT.format(environment[-1:])

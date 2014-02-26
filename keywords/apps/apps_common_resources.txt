@@ -5,8 +5,8 @@ Documentation     A resource file with reusable keywords and variables.
 Resource       ../common_resources.txt
 
 *** Variables ***
-@{CATEGORIES}=	View All Apps	Body Measurements	Dr. Visits	Fitness 	Lifestyle 	Medications 		Mood	Nutrition	Sleep 	Weight
-@{APPS}=	active	bettrlife	bodymedia	care4today	fatsecret	fitbit	fitbug	fitsync	fooducate	garmin	healthspark	itriage	loseit	mapmyfitness	meq		moves	moxiefit	mybreath	passage	runkeeper	sparkpeople	thryve	jawbone	wellzone	withings	zipongo
+@{CATEGORIES}	View All Apps	Body Measurements	Dr. Visits	Fitness 	Lifestyle 	Medications 		Mood	Nutrition	Sleep 	Weight
+@{APPS}	active	bettrlife	bodymedia	care4today	fatsecret	fitbit	fitbug	fitsync	fooducate	garmin	healthspark	itriage	loseit	mapmyfitness	meq		moves	moxiefit	mybreath	passage	runkeeper	sparkpeople	thryve	jawbone	wellzone	withings	zipongo
 
 *** Keywords ***
 Valid Login

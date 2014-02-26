@@ -49,6 +49,12 @@ App Manager Category Contains the Correct Count of Apps
    	\   Should Be Equal 	${Element}	${select}
     \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
 
+App Manager Has Description Text
+	[Tags]	ignore
+	Go To App Management Page
+	${result}= Get Text  css=#stage > div.additionalSyncApps
+	Should Be Equal
+
 # Connecting an App on the App Manager Page - Fitbit
     # [Tags]  beta
     # Connect App   fitbit
