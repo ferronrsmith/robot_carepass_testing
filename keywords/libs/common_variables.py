@@ -19,7 +19,7 @@ LOG_OUT_URL = 'https://{0}www.carepass/logout'
 ENVIRONMENT = 'carepass.com'
 CONTEXT = 'carepass'
 
-if environment.find('qa'):
+if environment == 'qa':
     ENVIRONMENT = DEFAULT_ENV.format(environment)
     CONTEXT = DEFAULT_CONTEXT.format('')
     LOG_OUT_URL = LOG_OUT_URL.format(environment)
@@ -31,8 +31,8 @@ elif re.match(r'qa[2-9]', environment):
     else:
         CONTEXT = DEFAULT_CONTEXT.format(environment[-1:])
     LOG_OUT_URL = LOG_OUT_URL.format('qa2')
-elif environment == "prod":
-    ENVIRONMENT = 'carepass.com'
+elif environment == 'prod':
+    ENVIRONMENT = DEFAULT_ENV.format('')
     CONTEXT = DEFAULT_CONTEXT.format('')
     LOG_OUT_URL = LOG_OUT_URL.format('')
     DEFAULT_USER_NAME = 'ferron.hanse'

@@ -9,25 +9,25 @@ Suite Teardown     Close Browser
 
 *** Test Cases ***
 App Manager Should Contain All Apps
-	[Tags]	prod_only
+	[Tags]	deprecated
     Go To App Management Page
     Check The Amount of Apps on App Manager	24
 
 App Manager Should Contain All Apps
-	[Tags]	qa_only
+	[Tags]	prod_only
     Go To App Management Page
     Check The Amount of Apps on App Manager	26
 
 App Manager Should Contain Drop Down
-	[Tags]	qa_only
+	[Tags]	prod_only
 	Page Should Contain Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']
 
 App Manager Should Have the Right Amount of Category
-	[Tags]	qa_only
+	[Tags]	prod_only
     Xpath Should Match X Times    //ul[@class='dropdown-menu inner selectpicker']/li    10
 
 App Manager Drop Should Contain All Categories
-    [Tags]	qa_only
+    [Tags]	prod_only
     [Documentation]     Verifies that all categories exists within the drop down
     : FOR   ${Element}  IN  @{CATEGORIES}
     \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
@@ -36,7 +36,7 @@ App Manager Drop Should Contain All Categories
    	\	Should Be Equal 	${Element}	${select}
 
 App Manager Category Contains the Correct Count of Apps
-    [Tags]	beta
+    [Tags]	prod_only
     [Documentation]     Verifies that all categories exists within the drop down
     ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurements    11    Dr. Visits    1    Fitness    14    Lifestyle    1    Medications    1    Mood    1    Nutrition    12    Sleep    3    Weight    10
 
@@ -50,10 +50,10 @@ App Manager Category Contains the Correct Count of Apps
     \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
 
 App Manager Has Description Text
-	[Tags]	ignore
+	[Tags]	beta
 	Go To App Management Page
-	${result}= Get Text  css=#stage > div.additionalSyncApps
-	Should Be Equal
+	${result}=  Get Text  css=#stage > h1 > span:nth-child(2)
+	Should Be Equal  ${result}  Sync your apps
 
 # Connecting an App on the App Manager Page - Fitbit
     # [Tags]  beta
