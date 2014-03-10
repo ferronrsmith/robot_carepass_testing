@@ -4,56 +4,56 @@ Documentation     Test Suite for the App Management Page.
 ...               This test is functionally identical to the example in
 ...               valid_login.txt file.
 Resource       ../../../keywords/apps/manager/resource.txt
-Suite Setup		Valid Login
+Suite Setup   Valid Login
 Suite Teardown     Close Browser
 
 *** Test Cases ***
 App Manager Should Contain All Apps
-	[Tags]	deprecated
+  [Tags]  deprecated
     Go To App Management Page
-    Check The Amount of Apps on App Manager	24
+    Check The Amount of Apps on App Manager 24
 
 App Manager Should Contain All Apps
-	[Tags]	prod_only
+  [Tags]  prod_only
     Go To App Management Page
-    Check The Amount of Apps on App Manager	26
+    Check The Amount of Apps on App Manager 25
 
 App Manager Should Contain Drop Down
-	[Tags]	prod_only
-	Page Should Contain Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']
+  [Tags]  prod_only
+  Page Should Contain Element   //div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']
 
 App Manager Should Have the Right Amount of Category
-	[Tags]	prod_only
+  [Tags]  prod_only
     Xpath Should Match X Times    //ul[@class='dropdown-menu inner selectpicker']/li    10
 
 App Manager Drop Should Contain All Categories
-    [Tags]	prod_only
+    [Tags]  prod_only
     [Documentation]     Verifies that all categories exists within the drop down
     : FOR   ${Element}  IN  @{CATEGORIES}
-    \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
-   	\	Execute Javascript 	window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
-   	\ 	${select}=	Get Currently Selected Category
-   	\	Should Be Equal 	${Element}	${select}
+    \ ${index}=   Get Index From List     ${CATEGORIES}     ${Element}
+    \ Execute Javascript  window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
+    \   ${select}=  Get Currently Selected Category
+    \ Should Be Equal   ${Element}  ${select}
 
 App Manager Category Contains the Correct Count of Apps
-    [Tags]	prod_only
+    [Tags]  prod_only
     [Documentation]     Verifies that all categories exists within the drop down
-    ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurements    11    Dr. Visits    1    Fitness    14    Lifestyle    1    Medications    1    Mood    1    Nutrition    12    Sleep    3    Weight    10
+    ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurement    11    Dr. Visit    1    Fitness    13    Lifestyle    1    Medication    1    Mood    1    Nutrition    12    Sleep    3    Weight    10
 
     Go To App Management Page
     : FOR   ${Element}  IN  @{CATEGORIES}
-    \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
-   	\	Execute Javascript 	window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
-   	\ 	${select}=	Get Currently Selected Category
+    \ ${index}=   Get Index From List     ${CATEGORIES}     ${Element}
+    \ Execute Javascript  window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
+    \   ${select}=  Get Currently Selected Category
     \   ${app_value}  Get From Dictionary   ${APP_COUNT}  ${Element}
-   	\   Should Be Equal 	${Element}	${select}
+    \   Should Be Equal   ${Element}  ${select}
     \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
 
 App Manager Has Description Text
-	[Tags]	beta
-	Go To App Management Page
-	${result}=  Get Text  css=#stage > h1 > span:nth-child(2)
-	Should Be Equal  ${result}  Sync your apps
+  [Tags]  beta
+  Go To App Management Page
+  ${result}=  Get Text  css=#stage > h1 > span:nth-child(2)
+  Should Be Equal  ${result}  Sync your apps
 
 # Connecting an App on the App Manager Page - Fitbit
     # [Tags]  beta
