@@ -1,4 +1,6 @@
 from common_variables import *
+from app_variables import *
+from data import *
 
 MOBILE_SERVER = "{0}/mobile".format(SERVER)
 MOBILE_CAREPASS_PATH = "https://{0}/".format(MOBILE_SERVER)

@@ -9,51 +9,49 @@ Suite Teardown     Close Browser
 
 *** Test Cases ***
 App Manager Should Contain All Apps
-	[Tags]	deprecated
-    Go To App Management Page
-    Check The Amount of Apps on App Manager	24
-
-App Manager Should Contain All Apps
-	[Tags]	prod_only
-    Go To App Management Page
-    Check The Amount of Apps on App Manager	25
+  [Tags]	prod_only
+  Given I Am Logged into CarePass
+  When user is on the App Manager Page
+  Then App Manager should have "${APPL_COUNT}" Apps shown
 
 App Manager Should Contain Drop Down
-	[Tags]	prod_only
-	Page Should Contain Element 	//div[@class='btn-group bootstrap-select ng-pristine ng-valid customDropdown']
+  [Tags]	prod_only
+  Given I Am Logged into CarePass
+  When user is on the App Manager Page
+  Then App Manager should contain a dropdown
 
 App Manager Should Have the Right Amount of Category
-	[Tags]	prod_only
-    Xpath Should Match X Times    //ul[@class='dropdown-menu inner selectpicker']/li    10
+  [Tags]	prod_only
+  Given I Am Logged into CarePass
+  When user is on the App Manager Page
+  Then App Manager should contain a dropdown with "${CAT_COUNT}" categories
 
-App Manager Drop Should Contain All Categories
-    [Tags]	prod_only
-    [Documentation]     Verifies that all categories exists within the drop down
-    : FOR   ${Element}  IN  @{CATEGORIES}
-    \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
-   	\	Execute Javascript 	window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
-   	\ 	${select}=	Get Currently Selected Category
-   	\	Should Be Equal 	${Element}	${select}
+App Manager Dropdown Should Contain All Categories
+  [Tags]	prod_only
+  [Documentation]     Verifies that all categories exists within the drop down
+  Given I Am Logged into CarePass
+  When user is on the App Manager Page
+  Then App Manager dropdown should contain the following categories "@{CATEGORIES}"
 
-App Manager Category Contains the Correct Count of Apps
-    [Tags]	prod_only
-    [Documentation]     Verifies that all categories exists within the drop down
-    ${APP_COUNT}    Create Dictionary    View All Apps    25    Body Measurement    11    Dr. Visit    1    Fitness    13    Lifestyle    1    Medication    1    Mood    1    Nutrition    12    Sleep    3    Weight    9
+App Manager Category Contains the Correct Count of Apps For Each Category
+  [Tags]	prod_only
+  [Documentation]     Verifies that all categories exists within the drop down
+  Given I Am Logged into CarePass
+  When user is on the App Manager Page
+  Then App Manager dropdown "@{CATEGORIES}" should each contain a specified "${APP_COUNT}"
 
-    Go To App Management Page
-    : FOR   ${Element}  IN  @{CATEGORIES}
-    \	${index}=   Get Index From List     ${CATEGORIES}     ${Element}
-   	\	Execute Javascript 	window.jQuery1_9_1('.selectpicker').selectpicker('val', ${index});
-   	\ 	${select}=	Get Currently Selected Category
-    \   ${app_value}  Get From Dictionary   ${APP_COUNT}  ${Element}
-   	\   Should Be Equal 	${Element}	${select}
-    \   Xpath Should Match X Times    //div[@class='additionalappsContainer']/div    ${app_value}
+App Manager View All Contains All Apps List in APP_LISTING
+  [Tags]  prod_only
+  [Documentation]     Verifies that all categories exists within the drop down
+  Given I Am Logged into CarePass
+  When user is on the App Manager Page
+  Then App Manager should contain all apps "${APP_LISTING}" listed
 
 App Manager Has Description Text
-	[Tags]	beta
-	Go To App Management Page
-	${result}=  Get Text  css=#stage > h1 > span:nth-child(2)
-	Should Be Equal  ${result}  Sync your apps
+  [Tags]	beta_old
+  Go To App Management Page
+  ${result}=  Get Text  css=#stage > h1 > span:nth-child(2)
+  Should Be Equal  ${result}  Sync your apps
 
 # Connecting an App on the App Manager Page - Fitbit
     # [Tags]  beta

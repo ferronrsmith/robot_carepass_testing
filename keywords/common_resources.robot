@@ -47,6 +47,17 @@ Welcome Page Should Be Open
     Location Should Be    ${WELCOME_URL}
     Title Should Be    CarePass
 
+I Am Logged into CarePass
+    Wait Until Keyword Succeeds    20s    5s    User Logged In to CarePass
+
+User Logged In to CarePass
+    Page Should Contain Element     //*[@id="mainNav"]/div[1]/div/div/span[2]/a
+
+Valid Login
+    Open Browser To Login Page
+    Login To App    ${DEFAULT_USER_NAME}	${DEFAULT_USER_PASSWORD}
+    Wait Until Keyword Succeeds    50s    5s    Welcome Page Should Be Open
+
 Teardown Take Failure Snapshot
     Run Keyword If Test Failed    Capture Screenshot
 
